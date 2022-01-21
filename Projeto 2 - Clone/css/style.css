@@ -473,7 +473,7 @@ aside section:last-child form button:hover {
     width: 50%;
 }
 
-.main-footer .container section:last-child ul {
+.inter-box ul {
     display: flex;
     margin-top: 15px;
     justify-content: flex-start;
