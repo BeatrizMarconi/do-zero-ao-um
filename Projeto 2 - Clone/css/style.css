@@ -404,7 +404,6 @@ aside section:last-child form {
 
 aside section:last-child form button {
     font-size: 24px;
-    transition: transform 0.3s linear; /*retarda o tempo da animação*/
     cursor: pointer;
 }
  
@@ -412,8 +411,20 @@ aside main h3 {
     padding: 0 24px;
 }
 
-aside section:last-child form button:hover {
+aside section:last-child form button:hover, .position-box-languagens li ul li a span:hover  {
     transform: scale(1.2); /*animação*/
+}
+
+.position-box-languagens li ul li a span, aside section:last-child form button{
+    transition: transform 0.1s linear; /*retarda o tempo da animação*/
+}
+
+.left-main-content main article p a, .left-main-content main article ul li a  {
+    color: #0060df;
+}     
+
+.left-main-content main article p a:hover, .left-main-content main article ul li a:hover {
+    text-decoration: underline;
 }
 
 .main-footer {
@@ -500,6 +511,10 @@ aside section:last-child form button:hover {
 
 .main-footer .container aside p:first-child {
     margin-bottom: 20px;
+}
+
+.container ul li a:hover, .container h6 a:hover, .container h5 a:hover{
+    text-decoration: underline;   
 }
 
 /*RESPONSIVIDADE*/
