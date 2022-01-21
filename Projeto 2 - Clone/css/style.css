@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+
 html, body {
     box-sizing: border-box;
     font-family: 'inter', sans-serif;
 }
 
-html, body, h1, h2, h3, h4, h5, h6, p, ul, menu {
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, menu, form, .main-footer nav {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -49,33 +50,40 @@ header .logo img {
     height: auto;
 }
 
-header, header div, header div ul {
-    display: flex;
-}
-
 header {
-    height: 75px;
-    padding: 0 16px;
-    align-items: center;
     border-bottom: 1px solid #ededf0;
 }
 
-header div{
-    width: 50%;
+header .container, header .container div, header .container ul {
+    display: flex;
 }
 
-header div,header nav ul {
+.container{
+    height: 100%;
+}
+
+header{
+    height: 75px;
+}
+
+header .container div{
+    width: 50%;
+    
+}
+
+header .container div,header nav ul {
     height: 100%;
     align-items: center;
 }
 
-header div:last-child { /*pega ultimo filho div*/
-    width: 50%;
+.position-button{
     justify-content: flex-end;
+    display: flex;
 }
 
 header nav li {
     margin-right: 32px;
+    
 }
 
 header nav li a {
@@ -105,17 +113,14 @@ header div button:hover {
     border-color:#fff;
 }
 
-section.container {
+section .container {
     padding: 48px 0px 96px 0px;
     display: flex;
 }
 
 .left-main-content { 
+    padding-right: 150px;
     width: 70%;
-}
-
-section.container > aside { /*está dentro na primeira ordem*/
-    width: 30%;
 }
 
 .left-main-content menu ol {
@@ -179,4 +184,432 @@ section.container > aside { /*está dentro na primeira ordem*/
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 20px;
+}
+
+.left-main-content main article section {
+    padding: 24px;
+    margin-bottom: 32px;
+    border-radius: 4px;
+    color: rgb(66, 67, 90);
+    background-color: rgb(249, 249, 251);
+
+}
+
+.left-main-content main mark {
+    color: rgb(20, 20, 34);
+    background-color: rgb(237, 237, 240);
+    font-weight: normal;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.help {
+    list-style: disc;
+    margin: 16px;
+}
+
+.help li {
+    margin-bottom: 8px;
+    color: #42435a;
+}
+
+.left-main-content main footer {
+    color: #42435a;
+    text-align: center;
+    padding: 32px 0;
+}
+
+.left-main-content main footer h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.left-main-content main footer ul {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 64px;
+}
+
+.left-main-content main footer ul li{
+    margin-right: 5px;
+}
+
+.left-main-content main footer ul li a {
+    text-decoration: underline;
+}
+
+.left-main-content main footer ul li a:hover {
+    text-decoration: none;
+}
+
+.left-main-content .Volunteer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 40px;
+    flex-direction: row;
+    align-items: center;
+    background: #ededf0 url(../img/volunteer.png)no-repeat left center; /*pra colocar irmagem, não repetir e alinhar na esquerda e centro*/
+    background-size: 50% auto;
+}
+
+.left-main-content .Volunteer > div {
+    width: 50%;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 40px;
+}
+
+.left-main-content .Volunteer > div h3 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 44px;
+    color: #000;
+}
+
+.left-main-content .Volunteer > div p {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 24px;
+} 
+
+.left-main-content .Volunteer > div a {
+    display: block;
+    margin-top: 16px;
+    color: #0060df;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+aside{
+    padding: 0 16px;
+    width: 20%;
+}
+
+aside main {
+    display: block;
+    height: 100%;
+}
+
+aside header {
+    border: none;
+    height: auto;
+    align-items: initial;
+    padding: 0 24px;
+    margin-top: 5px;
+}
+
+aside header form {
+    margin-bottom: 60px;
+    width: 100%;
+    padding-left: 8px;
+    display: flex;
+    border: 2px solid #9595a2;
+    justify-content: space-between;
+    border-radius: 3px;
+    align-items: center;
+    height: 40px;
+}
+
+aside form input {
+    appearance: none;
+    border: none;
+    width: 100%;
+}
+
+aside form input ::placeholder {
+    font-size: 16px;
+}
+
+aside form input:focus-visible { /*pra tirar a caixinha quando escrever no input*/
+    appearance: none;
+    outline: none;
+}
+
+aside form button {
+    background: none;
+    border: none;
+}
+
+aside form input, aside form button {
+    display: block;
+    height: 100%;
+}
+
+aside form button span {
+    display: flex !important;
+    align-items: center !important;
+}
+
+aside ul {
+    margin-top: 16px;
+    padding: 0 24px;
+}
+
+aside ul li input[type="checkbox"] { /*pega só os atributos do tipo checkbox*/
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border:2px solid #9595a2;
+    border-radius: 2px;
+    background-color: #fff;
+    vertical-align: middle;
+    content: "";
+    margin: 0 15px 0 0;
+
+}
+
+aside ul li {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+   
+}
+
+aside ul li select, .main-footer li select {
+    background: #fff url(../img/transferir\ .svg) no-repeat top 14px right 14px;
+    background-size: 12px 12px;
+    text-align: left;
+    padding: 0 8px;
+    width: 100%;
+    height: 40px;
+    border: 2px solid #9595a2;
+    color: #0c0c0d;
+    outline: 0;
+    appearance: none;
+    border-radius: 4px;
+
+}
+
+aside section:last-child {
+    margin-top: 310px;
+    border-radius: 24px;
+    padding: 24px;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky; /*faz o elemento ficar movel na rolagem junto de display block*/
+    top: 100px; /*distancia do topo*/
+    box-shadow: 0 5px 10px -3px rgb(14 13 26/12%),0 3px 16px 2px rgb(7 48 114 /12%), 0 8px 12px 1px rgb(34 0 51/12%);
+    width: 170px;
+    margin-left: 15px;
+}
+
+aside section:last-child form {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+aside section:last-child form button {
+    font-size: 24px;
+    transition: transform 0.3s linear; /*retarda o tempo da animação*/
+    cursor: pointer;
+}
+ 
+aside main h3 {
+    padding: 0 24px;
+}
+
+aside section:last-child form button:hover {
+    transform: scale(1.2); /*animação*/
+}
+
+.main-footer {
+    background: #000;
+    color: #fff;
+}
+
+.main-footer .container {
+    padding: 32px 0;
+}
+
+.main-footer .container nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.main-footer nav:first-child {
+    margin-bottom: 32px;
+    border-bottom: 1px solid #fff;
+    font-size: 16px;
+    padding-bottom: 32px;
+}
+
+.main-footer .container nav:first-child ul li{
+    margin-bottom: 10px;
+}
+
+.main-footer .container nav h5, .main-footer .container nav h6 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.main-footer .container nav h6 { 
+    font-weight: normal; 
+}
+
+.main-footer nav:first-child ul li ul {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;  
+}
+
+.main-footer nav:first-child ul li ul li {
+    margin-right: 10px;
+}
+
+.container-social {
+    width: 12%;
+}
+
+.container-map {
+    display: flex;
+}
+
+.main-footer .container section:last-child .inter-box {
+    width: 50%;
+}
+
+.main-footer .container section:last-child ul {
+    display: flex;
+    margin-top: 15px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.position-box-languagens {
+    flex-direction: column;
+}
+ 
+.main-footer .container section:last-child ul li {
+    margin-right: 24px;
+}
+
+.main-footer .container section:last-child ul li a {
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.main-footer .container aside {
+    font-size: 12px;
+    text-align: left;
+    line-height: 15px; 
+}
+
+.main-footer .container aside p:first-child {
+    margin-bottom: 20px;
+}
+
+/*RESPONSIVIDADE*/
+
+@media  only screen and (max-width: 768px){
+    header .container div {
+        width: auto;
+    }
+
+    header .container {
+        justify-content: space-between;
+    }
+
+    section .container {
+        flex-wrap: wrap;
+    }
+
+    .left-main-content {
+        width: auto;
+        padding: 0 32px;
+    }
+
+    .left-main-content menu ol {
+        flex-direction: column;
+    }
+
+    .left-main-content menu ol li {
+        margin: 0 0 20px 0;
+    }
+
+    ;.left-main-content menu ol li a {
+        font-size: 18px;
+    }
+
+    .left-main-content main header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid #20133a;
+    }
+
+    .left-main-content main header h1 {
+        font-size: 22px;
+        border: none;
+        margin-left: 20px;
+    }
+
+    section .container > aside {
+        width: 100%;
+        display: block;
+        padding: 0 32px;
+    }
+
+    .left-main-content .Volunteer{
+        padding: 40px 0;
+        background: #ededf0;
+        justify-content: center;
+    }
+
+    aside section:last-child {
+        margin: 30px auto;
+        position: relative;
+    }
+
+    .container-social{
+        width: 100%;
+    }
+
+    .main-footer .container nav, .container-social ul  {
+        flex-direction: column;
+    }
+
+    .main-footer nav:first-child > section {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .main-footer nav:first-child > section.container-social {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .main-footer nav:first-child > section ul li ul li{
+        margin-bottom: 0 !important;
+    }
+
+    .main-footer nav:first-child ul li ul {
+        justify-content: center;
+    }
+
+    .main-footer .container {
+        padding: 32px;
+    }
+
+    .main-footer .container section:last-child .inter-box {
+        width: 100%;
+    }
+
+    .container-map {
+        display: block;
+        text-align: center;
+    }
+
+    .main-footer .container section:last-child .inter-box ul {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .main-footer .container aside {
+        text-align: center;
+    }
+
 }
