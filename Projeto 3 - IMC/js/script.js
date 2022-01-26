@@ -31,6 +31,7 @@ function validaFormulario () {
 
     }else{
         document.getElementById('resultado').innerHTML= `<p class="paragraph" >Você está Abaixo do Peso! Seu IMC é: ${res} <p>`
-    }    
+    }
+        
 }
 
