@@ -1,37 +1,40 @@
-document.getElementById("botaoEnviar").addEventListener("click", validaFormulario)
+let botaoEnviar = document.getElementById("botaoEnviar");
+let resultado = document.getElementById("resultado");
+
+botaoEnviar.addEventListener("click", validaFormulario);
 
 function validaFormulario () {
 
-    let inputpeso = document.getElementById('peso').value
-    let inputaltura = document.getElementById('altura').value
+    let inputPeso = document.getElementById('peso').value
+    let inputAltura = document.getElementById('altura').value  
 
-    let peso = parseFloat(inputpeso)
-    let altura = parseFloat(inputaltura)
-    let res = (peso / altura **2).toFixed(0)
+    if (inputPeso !=='' && inputAltura !== ''){
+        let peso = parseFloat(inputPeso)
+        let altura = parseFloat(inputAltura)
+        let imc = (peso / Math.pow(altura,2)).toFixed(0)
 
-    if (res >=18.5 && res <= 29){
-        document.getElementById("resultado").innerHTML= `<p class="paragraph" >Você está no peso ideal! Seu IMC é: ${res}<p>`
+        if (imc >=18.5 && imc <= 29){
+            mensagem ('Você está no peso ideal! Seu IMC  ', imc )
 
-    }else if (res >= 30 && res <= 34.9){
-        document.getElementById('resultado').innerHTML= `<p class="paragraph" >Você está com Obesidade Grau 1! Seu IMC é: ${res} <p>`
+        }else if (imc >= 30 && imc <= 34.9){
+            mensagem ('Você está com Obesidade Grau 1! Seu IMC é', imc)
 
-    }else if (res >= 35 && res <= 39.9){
-        document.getElementById('resultado').innerHTML= `<p class="paragraph" >Você está com Obesidade Grau 2! Seu IMC é: ${res} <p>`
+        }else if (imc >= 35 && imc <= 39.9){
+            mensagem ('Você está com Obesidade Grau 2! Seu IMC é', imc)
 
-    }else if (res >= 40){
-        document.getElementById('resultado').innerHTML= `<p class="paragraph" >Você está com Obesidade Grau 3! Seu IMC é: ${res} <p>`
+        }else if (imc >= 40){
+            mensagem ('Você está com Obesidade Grau 3! Seu IMC é', imc )
 
-    }else if (!peso){
-        document.getElementById('resultado').innerHTML= `<p class="paragraph" >Peso Inválido<p>`
-        return;
-
-    }else if (!altura) {
-        document.getElementById('resultado').innerHTML= `<p class="paragraph" >Altura Inválida<p>`
-        return;
-
+        }else{
+            mensagem ('Você está Abaixo do Peso! Seu IMC é', imc)
+        }
     }else{
-        document.getElementById('resultado').innerHTML= `<p class="paragraph" >Você está Abaixo do Peso! Seu IMC é: ${res} <p>`
-    }
-        
+        alert('Por favor, Preencha todos os campos!')
+    }    
 }
+
+function mensagem(message, imc) {
+    resultado.innerHTML= `<p class="paragraph"> ${message} : ${imc}<p>`;
+}
+
 

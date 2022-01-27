@@ -16,13 +16,17 @@ section, .container-main, form {
 section {
     width: 100%;
     height: 100%;
-    background-color: #673fca;
+    
+}
+
+section, button{
+background-color: #33100d;
 }
 
 .container-main {
     width: 35%;
     height: 50%;
-    background-color: #d99af0;
+    background-color: #ffda75;
 }
 
 
@@ -33,27 +37,31 @@ form, html, body, .paragraph {
 
 input, label, h1, #resultado {
     width: 80%;
+    box-sizing: border-box; /*para não estourar a caixa*/
 }
 
 button, #resultado, input {
-    height: 15%;
+    height: 45px;
 }
 
 input {
     margin: 10px 0 10px 0;
     border: 2px solid grey;
+    font-size: 15px;
+    background: white;
 }
 
-label, p, input {
-    font-size: 15px;
+label, p {
+    font-size: 20px;
 }
 
 button {
     margin-top: 15px;
     width: 80%;
-    background-color: #673fca;
     font-size: 15px;
     color: #ffff;
+    border: none;
+    transition-duration: .15s;
 }
 
 button, .container-main, input, #resultado {
@@ -67,10 +75,11 @@ label {
 h1 {
     font-size: 30px;
     margin-top: 40px;
+    text-align: center;
 }
 
 button:hover {
-    background: #936aff;
+    background: #5c2d16;
     cursor: pointer;
 }
 
@@ -80,6 +89,7 @@ button:hover {
 
 
 .paragraph {
-    background-color: #fff;
     margin: 0;
 }
+
+
