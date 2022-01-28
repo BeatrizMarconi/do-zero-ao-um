@@ -6,7 +6,7 @@ botaoEnviar.addEventListener("click", validaFormulario);
 function validaFormulario () {
 
     let inputPeso = document.getElementById('peso').value
-    let inputAltura = document.getElementById('altura').value  
+    let inputAltura = document.getElementById('altura').value.replace(',', '.') 
 
     if (inputPeso !=='' && inputAltura !== ''){
         let peso = parseFloat(inputPeso)
