@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+}
+
+.textoFrase {
+    font-style: italic;
+    color: #000;
+    background-color: #fff;
+    font-size: 25px;
+}
+
+button {
+    background: #ffa998;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+button:hover {
+    background: #ffbb82;
+    cursor: pointer;
+}
+
