@@ -1,4 +1,4 @@
-.container {
+.container{
     display: flex;
     width: 100%;
     align-items: center;
@@ -6,23 +6,23 @@
     flex-direction: column;
 }
 
-.img {
+.img{
     width: 400px;
     height: 430px;
     margin-top: 40px;
 }
 
-.timer {
+p{
     font-size: 120px;
     margin-top:-270px
 }
 
-.areaButton {
+.container div{
     margin-top:50px;
     display:flex;
 }
 
-.botao {
+button{
     margin: 0 15px;
     background: white;
     width: 100px;
@@ -35,7 +35,7 @@
     font-weight: bold
 }
 
-.botao:hover {
+button:hover {
     transition: all 0.30s;
     background-color: #51c3df;
 }

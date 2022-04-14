@@ -1,72 +1,59 @@
-import React, {Component} from 'react';
-import './App.css'
+import { useState } from "react";
+import "./App.css"
 
-class App extends Component {
+let currentTime = null;
 
-  constructor(props){
+export default function App() {
 
-    super(props); 
-    this.state= {
-      numero: 0,
-      botao: 'VAI'
-    };
+  const [timer, setTimer] = useState(0);
+  const [textButton, setTextButton] = useState('VAI');
 
-    this.timer= null;
-    this.vai= this.vai.bind(this);
-    this.limpar= this.limpar.bind(this);
-  }
+  const startTimer = () => {
 
-  vai() {
-
-    let state= this.state;
+    if (currentTime == null){
   
-    if(this.timer !== null) {
+      currentTime = setInterval(() => {
 
-      clearInterval(this.timer);
-      this.timer= null;
-      state.botao= 'VAI'
+        setTimer(time => time + 0.1)
+
+      }, 100);
+
+      setTextButton('PAUSAR');
+
     }else{
 
-      this.timer = setInterval(() => {
-        let state= this.state;
-        state.numero += 0.1;
-        this.setState(state);
-      },100);
-      state.botao= 'PAUSAR'
-    }
+      clearInterval(currentTime)
 
-    this.setState(state);
-  }
+      setTextButton('VAI');
 
-  limpar() {
-
-    if(this.timer !== null) {
-
-      clearInterval(this.timer);
-      this.timer= null;
+      currentTime = null
 
     }
+  };
 
-    let state= this.state;
-    state.numero= 0;
-    state.botao= 'VAI';
-    this.setState(state);
+  const resetTimer = () => {
 
+    clearInterval(currentTime)
+
+    setTimer(0)
+
+    currentTime = null
+
+    setTextButton('VAI');
   }
 
-  render () {
-    return(
-      <div className='container'>
-        <img src={require('./assets/cronometro.png')} alt="" className='img' />
-        <p className='timer'>{this.state.numero.toFixed(1)}</p>
-        <div className='areaButton'>
-          <p className='botao' onClick={this.vai}>{this.state.botao}</p>
-          <p className='botao' onClick={this.limpar}>LIMPAR</p>
-        </div>
-        <h1>CRONÔMETRO</h1>
+  return (
+    <div className="container">
+      <img src={require('./assets/cronometro.png')} alt="" className='img'/>
+      
+      <p>{timer.toFixed(1)}</p>
+      <div>
+        <button onClick={startTimer}>{textButton}</button>
+        <button onClick={resetTimer}>LIMPAR</button>
       </div>
-    );
-  }
+      <h1>CRONÔMETRO</h1>
+    </div>
+  );
 }
 
-export default App;
+
