@@ -1,18 +1,36 @@
-import { Routes } from 'react-router-dom';
-import Route from './Route';
-
-import SignIn from '../pages/SignIn'
-import SignUp from '../pages/SignUp'
-
+import { BrowserRouter as Router,Routes, Route, Navigate } from "react-router-dom"
+import SignIn from '../pages/SignIn/index'
+import SignUp from '../pages/SignUp/index'
+import AuthProvider, { AuthContext } from "../contexts/user"
 import Dashboard from '../pages/Dashboard'
+import { useContext } from "react"
 
-export default function Router () {
+export default function Rotas () {
+
+    const Private = ({children}) => {
+        const {signed, loading} = useContext(AuthContext);
+
+        if(loading){
+            return <div>Carregando...</div>
+        }
+
+        if(!signed){
+            return <Navigate to="/" />;
+        }
+
+        return children;
+    };
+
     return (
-        <Routes>
-            <Route exact path= "/" component= {SignIn} />
-            <Route exact path= "/register" component= {SignUp} />
+        <Router>
+            <AuthProvider>
+                <Routes>
+                    <Route exact path= "/" element= {<SignIn/>} />
+                    <Route exact path= "register" element= {<SignUp/>} />
 
-            <Route exact path= "/dashboard" component= {Dashboard} isPrivate/>
-        </Routes>
+                    <Route exact path= "dashboard" element= {<Private><Dashboard/></Private>} />
+                </Routes>
+            </AuthProvider>
+        </Router>
     )
 }
