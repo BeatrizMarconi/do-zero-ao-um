@@ -7,6 +7,7 @@ import Profile from "../pages/Profile"
 import AuthProvider, { AuthContext } from "../contexts/user"
 import Dashboard from '../pages/Dashboard'
 import { useContext } from "react"
+import Customers from '../pages/Customers';
 
 export default function Rotas () {
 
@@ -42,6 +43,8 @@ export default function Rotas () {
                     <Route exact path= "dashboard" element= {<Private><Dashboard/></Private>} />
                     
                     <Route exact path= "profile" element= {<Private><Profile/></Private>} />
+
+                    <Route exact path= "customers" element={<Private><Customers/></Private>}/>
                 </Routes>
             </AuthProvider>
         </Router>
