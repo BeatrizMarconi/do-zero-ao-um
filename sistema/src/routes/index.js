@@ -1,6 +1,9 @@
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router,Routes, Route, Navigate } from "react-router-dom"
 import SignIn from '../pages/SignIn/index'
 import SignUp from '../pages/SignUp/index'
+import Profile from "../pages/Profile"
 import AuthProvider, { AuthContext } from "../contexts/user"
 import Dashboard from '../pages/Dashboard'
 import { useContext } from "react"
@@ -18,17 +21,27 @@ export default function Rotas () {
             return <Navigate to="/" />;
         }
 
+        if(signed && !Private){
+            console.log('foi')
+            return <Navigate to="dashboard" />
+            
+        }
+
         return children;
     };
 
     return (
         <Router>
+            <ToastContainer autoClose={3000}/>
             <AuthProvider>
                 <Routes>
                     <Route exact path= "/" element= {<SignIn/>} />
+
                     <Route exact path= "register" element= {<SignUp/>} />
 
                     <Route exact path= "dashboard" element= {<Private><Dashboard/></Private>} />
+                    
+                    <Route exact path= "profile" element= {<Private><Profile/></Private>} />
                 </Routes>
             </AuthProvider>
         </Router>

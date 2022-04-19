@@ -1,6 +1,10 @@
 import { useState, createContext, useEffect } from "react";
+// import { Navigate } from "react-router-dom";
 import firebase from "../services/firebaseConnection";
-import { useNavigate} from "react-router-dom";
+import { useNavigate }  from "react-router-dom";
+import { toast } from 'react-toastify';
+
+
 
 export const AuthContext = createContext({});
 
@@ -13,31 +17,51 @@ export default function AuthProvider({children}){
     const [loadingAuth, setLoadingAuth] = useState(false); 
 
     useEffect(() => {
-        const recoveredUser = localStorage.getItem("user");
 
-        if(recoveredUser){
-            setUser(JSON.parse(recoveredUser))
+        function loadStorage(){
+            const recoveredUser = localStorage.getItem("user");
+
+            if(recoveredUser){
+                setUser(JSON.parse(recoveredUser))
+                setLoading(false);
+            }
+
+            setLoading(false);
         }
 
-        setLoading(false);
+        loadStorage();
 
     }, [])
 
-    const login = (email, password) =>{
-        console.log("login auth", { email, password });
+    async function signIn(email, password){
+        setLoadingAuth(true);
 
-        const loggedUser = {
-            id: "123",
-            email,
-        };
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+        .then( async (value)=>{
+            let uid= value.user.uid;
 
-        localStorage.setItem("user", JSON.stringify(loggedUser))
+            const userProfile = await firebase.firestore().collection('users').doc(uid).get();
 
-        if(password === "123"){
-            setUser(loggedUser)
+            let data = {
+                uid: uid,
+                nome: userProfile.data().nome,
+                email: value.user.email,
+                avatarUrl: userProfile.data().avatarUrl
+            };
+
+            setUser(data);
+            storageUser(data);
+            setLoadingAuth(false);
             navigate("dashboard")
-        }
-    };
+            toast.success('Bem vindo a plataforma!')
+        })
+
+        .catch((error)=>{
+            console.log(error);
+            toast.error('Ops algo deu errado!')
+            setLoadingAuth(false)
+        })
+    }
 
     const logout = () => {
         console.log("logout")
@@ -49,7 +73,8 @@ export default function AuthProvider({children}){
     async function signUp(email, password, nome){
         setLoadingAuth(true);
         await firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(async (value)=>{
+        .then( async (value)=>{
+            console.log('Entrou no Then 1')
             let uid = value.user.uid;
 
             await firebase.firestore().collection("users").doc(uid).set({
@@ -58,7 +83,8 @@ export default function AuthProvider({children}){
             })
 
             .then( ()=>{
-
+                
+                console.log('Entrou no Then 2')
                 let data = {
                     uid: uid,
                     nome: nome,
@@ -68,30 +94,44 @@ export default function AuthProvider({children}){
             
                 setUser(data);
                 storageUser(data);
-                setLoadingAuth(false);    
+                setLoadingAuth(false);
+                navigate("dashboard")
+                toast.success('Bem vindo a plataforma!')    
             })
 
         })
 
         .catch((error)=>{
             console.log(error);
+            toast.error('Ops algo deu errado!')
             setLoadingAuth(false);
+             
         })
     }
 
     function storageUser(data){
-        localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('user', JSON.stringify(data));
+
     }
+
+    async function signOut(){
+        await firebase.auth().signOut();
+        localStorage.removeItem('')
+    }    
 
     return(
         <AuthContext.Provider 
         value={{
             signed: !!user, 
             user, 
-            loading, 
-            login, 
+            loading,  
             logout, 
-            signUp
+            signUp,
+            signIn,
+            signOut,
+            setUser,
+            loadingAuth,
+            storageUser
         }}
         >
             {children}
