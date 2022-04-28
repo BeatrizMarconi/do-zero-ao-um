@@ -16,8 +16,24 @@ export default function Dashboard() {
     const [loadingMore, setLoadingMore] = useState(false);
     const [isEmpty, setIsEmpty] = useState(false);
     const [lastDocs, setLastDocs] = useState();
+    const [showPostModal, setshowPostModal] = useState(false);
+    const [detail, setDetail] = useState();
 
     useEffect(()=>{
+
+        async function loadChamados(){
+            await listRef.limit(10)
+            .get()
+            .then((snapshot)=> {
+                updateState(snapshot);
+            })
+            .catch((err)=> {
+                console.log(err)
+                setLoadingMore(false);
+            })
+    
+            setLoading(false);
+        }
 
         loadChamados();
 
@@ -26,19 +42,7 @@ export default function Dashboard() {
         }
     }, []);
 
-    async function loadChamados(){
-        await listRef.limit(10)
-        .get()
-        .then((snapshot)=> {
-            updateState(snapshot);
-        })
-        .catch((err)=> {
-            console.log(err)
-            setLoadingMore(false);
-        })
-
-        setLoading(false);
-    }
+    
 
     async function updateState(snapshot){
         const isCollectionEmpty= snapshot.size === 0;
@@ -87,8 +91,22 @@ export default function Dashboard() {
         </div>    
     }
 
-    function handleMore(){
+    async function handleMore(){
         setLoadingMore(true)
+
+        await listRef.startAfter(lastDocs).limit(10)
+        .get()
+        .then((snapshot)=> {
+            updateState(snapshot);
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
+    }
+
+    function postModal(item){ //abrir e fechar modal
+        setshowPostModal(!showPostModal);
+        setDetail(item);
     }
 
 
@@ -139,7 +157,7 @@ export default function Dashboard() {
                                             </td>
                                             <td data-label="Cadastrado">{item.createdFormated}</td>
                                             <td data-label="#">
-                                                <button className="action" style={{backgroundColor:'#3583f6'}}><FiSearch color="#fff" size={17}/></button>
+                                                <button className="action" style={{backgroundColor:'#3583f6'}} onClick={()=> postModal(item) }><FiSearch color="#fff" size={17}/></button>
                                                 <button className="action" style={{backgroundColor:'#f6a935'}}><FiEdit2 color="#fff" size={17}/></button>
                                             </td>
                                         </tr>
