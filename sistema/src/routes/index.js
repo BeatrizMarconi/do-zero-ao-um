@@ -48,6 +48,8 @@ export default function Rotas () {
                     <Route exact path= "customers" element={<Private><Customers/></Private>}/>
 
                     <Route exact path= "new" element= {<Private><New/></Private>}/>
+
+                    <Route exact path= "new/:id" element= {<Private><New/></Private>}/>
                 </Routes>
             </AuthProvider>
         </Router>

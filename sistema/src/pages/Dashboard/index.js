@@ -159,7 +159,7 @@ export default function Dashboard() {
                                             <td data-label="Cadastrado">{item.createdFormated}</td>
                                             <td data-label="#">
                                                 <button className="action" style={{backgroundColor:'#3583f6'}} onClick={()=> postModal(item) }><FiSearch color="#fff" size={17}/></button>
-                                                <button className="action" style={{backgroundColor:'#f6a935'}}><FiEdit2 color="#fff" size={17}/></button>
+                                                <Link className="action" style={{backgroundColor:'#f6a935'}} to={`/new/${item.id}`}><FiEdit2 color="#fff" size={17}/></Link>
                                             </td>
                                         </tr>
                                     )

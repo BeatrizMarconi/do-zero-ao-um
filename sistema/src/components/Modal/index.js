@@ -16,23 +16,23 @@ export default function Modal({conteudo, close}){
 
                     <div className='row'>
                         <span>
-                            Cliente: <a>{conteudo.cliente}</a>
+                            Cliente: <i>{conteudo.cliente}</i>
                         </span>
                     </div>
 
                     <div className='row'>
                         <span>
-                            Assunto: <a>{conteudo.assunto}</a>
+                            Assunto: <i>{conteudo.assunto}</i>
                         </span>
 
                         <span>
-                            Cadastrado em: <a>{conteudo.createdFormated}</a>
+                            Cadastrado em: <i>{conteudo.createdFormated}</i>
                         </span>
                     </div>
 
                     <div className='row'>
                         <span>
-                            status: <a style={{color: '#fff', backgroundColor: conteudo.status === 'Aberto' ? '#5cb85c' : '#999'}}>{conteudo.status}</a>
+                            status: <i style={{color: '#fff', backgroundColor: conteudo.status === 'Aberto' ? '#5cb85c' : '#999'}}>{conteudo.status}</i>
                         </span>
                     </div>
 
