@@ -1,5 +1,4 @@
 import { useState, createContext, useEffect } from "react";
-// import { Navigate } from "react-router-dom";
 import firebase from "../services/firebaseConnection";
 import { useNavigate }  from "react-router-dom";
 import { toast } from 'react-toastify';
