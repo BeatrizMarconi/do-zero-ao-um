@@ -6,6 +6,7 @@ import {FiMessageSquare, FiPlus, FiSearch, FiEdit2} from "react-icons/fi"
 import {Link} from "react-router-dom"
 import { useState, useEffect } from "react";
 import { format } from 'date-fns';
+import Modal from '../../components/Modal';
 
 const listRef= firebase.firestore().collection('chamados').orderBy('created', 'desc');
 
@@ -172,6 +173,14 @@ export default function Dashboard() {
                     </>
                 )}   
             </div>
+
+           {showPostModal && (
+               <Modal
+                    conteudo={detail}
+                    close={postModal}
+               />
+           )}                     
+
         </div>
     )
 }
