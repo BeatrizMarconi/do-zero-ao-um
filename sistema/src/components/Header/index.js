@@ -11,9 +11,13 @@ export default function Header(){
     const {user} = useContext(AuthContext);
 
     return(
-        <div className='sidebar'>
+        <div className="sidebar">
             <div>
-                <img src={user.avatarUrl} alt='foto de perfil'/>
+                {user.avatarUrl === null ?
+                <img src={avatar} width="250px" heigth="250" alt='foto de perfil do usuário' />
+                : 
+                <img src={user.avatarUrl} width='250px' heigth='250' alt='foto de perfil do usuário' />
+                }
             </div>
             
             <Link to='/dashboard'>

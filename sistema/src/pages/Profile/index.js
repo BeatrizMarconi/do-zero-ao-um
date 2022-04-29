@@ -111,9 +111,9 @@ export default function Profile(){
 
                             <input type="file" accept="image/*" onChange={handleFile}/><br/>
                             {avatarUrl === null ?
-                                <img src={avatar} width='250' heigth='250' alt='foto de perfil do usuário' />
+                                <img src={avatar} width='250px' heigth='250' alt='foto de perfil do usuário' />
                                 : 
-                                <img src={avatarUrl} width='250' heigth='250' alt='foto de perfil do usuário' />
+                                <img src={avatarUrl} width='250px' heigth='250' alt='foto de perfil do usuário' />
                             }
                         </label>
 

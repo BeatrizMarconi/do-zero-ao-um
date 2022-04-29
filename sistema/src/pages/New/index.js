@@ -63,7 +63,7 @@ export default function New(){
 
         loadCustomers();
 
-    }, [id]);
+    }, []);
 
     async function loadId(lista){
         await firebase.firestore().collection('chamados').doc(id)
@@ -103,7 +103,7 @@ export default function New(){
                 toast.success('Editado com sucesso!');
                 setCustomersSelected(0);
                 setComplemento('');
-                navigate("dashboard")
+                navigate("/dashboard");
             })
             .catch((err)=> {
                 toast.error('Ops algo deu errado!')

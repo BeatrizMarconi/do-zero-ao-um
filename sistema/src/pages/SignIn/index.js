@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
 import'./signin.css';
 import logo from '../../assets/logo.png';
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/user';
 
 export default function SignIn() {
 
-  const { signed, signIn, loadingAuth } = useContext(AuthContext);
+  const { /*signed,*/signIn, loadingAuth } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,7 +33,7 @@ export default function SignIn() {
           <input type="password" placeholder="******" value={password} onChange={(e)=> setPassword(e.target.value)}></input>
           <button type='submit'>{loadingAuth ? 'Carregando...' : 'Acessar'}</button>
         </form>
-        <p>{String(signed)}</p>
+        {/* <p>{String(signed)}</p> */}
         <Link to='/register'>Criar uma conta</Link>
       </div>
     </div>
